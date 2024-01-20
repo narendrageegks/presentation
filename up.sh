@@ -13,5 +13,5 @@ docker pull "$DOCKER_HUB_USERNAME/$IMAGE_NAME:latest"
 if ! docker info | grep -q "Swarm: active"; then
     sudo docker swarm init
 fi
-docker service rm my-lawn-service 2>/dev/null
-docker service update --name flask-service -p 5000:5000 --replicas 1 "$DOCKER_HUB_USERNAME/$IMAGE_NAME:latest"
+docker service rm flask-service 2>/dev/null
+docker service create --name flask-service -p 5000:5000 --replicas 1 "$DOCKER_HUB_USERNAME/$IMAGE_NAME:latest"
